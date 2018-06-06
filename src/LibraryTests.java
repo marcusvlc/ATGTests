@@ -27,6 +27,10 @@ class LibraryTests {
 		library.readGraph("negativegraph.txt");
 	}
 	
+	/**
+	 * Teste para ler um grafo com vertices alfabeticos
+	 * @throws Exception
+	 */
 	@Test
 	public void testAlphabeticGraph() throws Exception {
 		library = new BibliotecaController();
