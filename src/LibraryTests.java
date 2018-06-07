@@ -1,14 +1,14 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.Before;
-import grafo.*;
-import junit.framework.Assert;
+import org.junit.Assert;
+
 import biblioteca.*;
+import grafo.*;
+import org.junit.Before;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
+public class LibraryTests {
 
-class LibraryTests {
-	
 	public BibliotecaController library;
 	public Graph negativeGraph;
 	
@@ -107,8 +107,22 @@ class LibraryTests {
 		Assert.assertEquals(library.getMeanEdge(1), -199.65, 0.000001);
 	}
 	
-	
-	
-	
+	/**
+	 * Teste para verificar se um grafo eh conectado
+	 * @throws Exception
+	 */
+	@Test
+	public void testIsConnected() throws Exception {
+		library = new BibliotecaController();
+		library.readGraph("normalGraph.txt");
+
+		assertTrue(library.connected(1));
+		
+		library.readGraph("desconnectedGraph.txt");
+		
+		assertFalse(library.connected(2));
+
+
+	}
 
 }
