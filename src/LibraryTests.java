@@ -124,5 +124,36 @@ public class LibraryTests {
 
 
 	}
+	
+	
+	/**
+	 * O código lança uma exceção de NullPointerException na classe BibliotecaController linha 393 na ordenação do array WeightedEdge,
+	 * para o teste de um grafos com peso positivo e negativo.
+	 * @throws Exception
+	 */
+	@Test(expected = NullPointerException.class)
+	public void testMSTNegativeWeightGraph() throws Exception {
+		library = new BibliotecaController();
+		library.readWeightGraph("negativeWeightedGraph.txt");
+		library.readGraph("desconnectedGraph.txt");
+		library.readWeightGraph("weightedGraph.txt");
+		
+		library.MST(2);
+		library.MST(1);
+		library.MST(3);
+	}
+	 /**
+	  * o código lança uma exceção de ArrayIndexOutOfBoundsException na linha 387, para o teste de um grafo grande.
+	  * @throws Exception
+	  */
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void testMSTLargeGraph() throws Exception {
+		library = new BibliotecaController();
+		library.readWeightGraph("largeGraph.txt");
+		
+		
+		library.MST(1);
+	}
+	
 
 }
