@@ -135,12 +135,10 @@ public class LibraryTests {
 	public void testMSTNegativeWeightGraph() throws Exception {
 		library = new BibliotecaController();
 		library.readWeightGraph("negativeWeightedGraph.txt");
-		library.readGraph("desconnectedGraph.txt");
 		library.readWeightGraph("weightedGraph.txt");
 		
 		library.MST(2);
 		library.MST(1);
-		library.MST(3);
 	}
 	 /**
 	  * o código lança uma exceção de ArrayIndexOutOfBoundsException na linha 387, para o teste de um grafo grande.
