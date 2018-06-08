@@ -263,9 +263,11 @@ public class LibraryTests {
 		library = new BibliotecaController();
 		library.readGraph("normalGraph2.txt");
 		library.readWeightGraph("weightedGraph3.txt");
+		library.readWeightGraph("negativeCircleGraph.txt");
 		
 		assertEquals("2 3", library.shortestPath(2, 2, 3));
 		assertEquals("1 2 5", library.shortestPath(1, 1, 5));
+		assertEquals("1 2 5 3 4", library.shortestPath(3, 1, 4));
 		
 	}
 	
