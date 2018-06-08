@@ -11,7 +11,8 @@ public class LibraryTests {
 
 	public BibliotecaController library;
 	public Graph negativeGraph;
-
+	public static final String NL = System.lineSeparator();
+	
 	@Before
 	public void init() throws Exception {
 
@@ -179,5 +180,94 @@ public class LibraryTests {
 		assertEquals(expc, grafoBFS);
 
 	}
+	
+	/**
+	 * Teste para a representaçao do tipo AM de um grafo normal
+	 * @throws Exception
+	 */
+	@Test
+	public void testNormalGraphRepresentationAM() throws Exception {
+		library = new BibliotecaController();
+		library.readGraph("normalGraph.txt");
+		
+		String expectedAM = "  1 2 3 " + NL +
+							"1 0 1 1"	+ NL + 
+							"2 1 0 1" + NL + 
+							"3 1 1 0" + NL;  
+		
+		assertEquals(expectedAM, library.graphRepresentation(1, "AM"));
+		
+		
+		
+	}
+	
+	/**
+	 * Teste para a representacao do tipo AL de um grafo normal
+	 * @throws Exception
+	 */
+	@Test
+	public void testNormalGraphRepresentationAL() throws Exception {
+		library = new BibliotecaController();
+		library.readGraph("normalGraph.txt");
+		
+		String expectedAL = "1 - 2 3 " + NL +
+							"2 - 1 3 " + NL +
+							"3 - 1 2 " + NL;
+		assertEquals(expectedAL, library.graphRepresentation(1, "AL"));
+		
+		
+	}
+	
+	/**
+	 * Teste para representacao do tipo AM de um grafo com pesos
+	 * @throws Exception
+	 */
+	@Test
+	public void testWeightedRepresentationAM() throws Exception {
+		library = new BibliotecaController();
+		library.readWeightGraph("weightedGraph3.txt");
+		String expectedAM = "  1 2 3 " + NL +
+							"1 0 0.1 0"	+ NL + 
+							"2 0.1 0 0.5" + NL + 
+							"3 0 0.5 0" + NL;  
+	 
+		assertEquals(expectedAM, library.graphRepresentation(1, "AM"));
+		
+		
+	}
+	
+	/** Teste para representacao do tipo AL de um grafo com pesos
+
+	 * @throws Exception
+	 */
+	@Test
+	public void testWeightedRepresentationAL() throws Exception {
+		library = new BibliotecaController();
+		library.readWeightGraph("weightedGraph3.txt");
+		
+		String expectedAL = "1 - 2(0.1) " + NL +
+							"2 - 1(0.1) 3(0.5) " + NL +
+							"3 - 2(0.5) " + NL;
+		
+		assertEquals(expectedAL, library.graphRepresentation(1, "AL"));
+		
+		
+	}
+	
+	/**
+	 * Teste para retornar o menor caminho entre dois vertices de um grafo.
+	 * @throws Exception
+	 */
+	@Test
+	public void testShortestPath() throws Exception {
+		library = new BibliotecaController();
+		library.readGraph("normalGraph2.txt");
+		library.readWeightGraph("weightedGraph3.txt");
+		
+		assertEquals("2 3", library.shortestPath(2, 2, 3));
+		assertEquals("1 2 5", library.shortestPath(1, 1, 5));
+		
+	}
+	
 
 }
