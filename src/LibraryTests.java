@@ -182,6 +182,42 @@ public class LibraryTests {
 	}
 	
 	/**
+	 * Para o teste de DFS não há a impressão do nível do vertice escolhido 
+	 * @throws Exception
+	 */
+	@Test
+	public void testDFS() throws Exception {
+		library = new BibliotecaController();
+		library.readGraph("normalGraph.txt");
+
+		
+		String grafoDFS = "1 0 -" + NL +
+				  "2 1 1" + NL +
+			          "3 2 2" + NL;
+
+		assertEquals(grafoDFS, library.DFS(1, 1));
+
+	}
+	
+	/**
+	 * Para o teste de DFS com grafo de arestas negativas, acontece um NullPointerException
+	 * @throws Execption
+	 */
+	@Test
+	public void testDFSNegativa() throws Exception {
+		library = new BibliotecaController();
+		library.readGraph("weightedGraph2.txt");
+		
+		String grafoNegativoDFS = "-1 0 -" + NL +
+					  "-2 1 1" + NL +
+					  "4 2 -2" + NL +
+					  "3 3 4" + NL +
+					  "5 1 -1" + NL;
+		
+		assertEquals(grafoNegativoDFS, library.DFS(1, -1));
+	}
+	
+	/**
 	 * Teste para a representaçao do tipo AM de um grafo normal
 	 * @throws Exception
 	 */
