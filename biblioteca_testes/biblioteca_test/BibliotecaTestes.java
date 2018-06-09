@@ -1,23 +1,20 @@
+package biblioteca_test;
+
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
-
-import biblioteca.*;
-import grafo.*;
-import org.junit.Before;
 import org.junit.Test;
 
-public class LibraryTests {
+import biblioteca.BibliotecaController;
+import grafo.Graph;
 
+
+public class BibliotecaTestes {
+	
 	public BibliotecaController library;
 	public Graph negativeGraph;
 	public static final String NL = System.lineSeparator();
 	
-	@Before
-	public void init() throws Exception {
-
-	}
-
 	/**
 	 * Teste para ler um grafo com vertices negativos
 	 * 
@@ -163,6 +160,21 @@ public class LibraryTests {
 
 		library.MST(1);
 	}
+	
+	/**
+	 * o código não retorna nada na função MST, o que não permite
+	 * que testemos se está funcionando corretamente, mas executa corretamente
+	 * sem exceptions
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testMSTNormalGraph() throws Exception {
+		library = new BibliotecaController();
+		library.readWeightGraph("grafo2.txt");
+
+		library.MST(1);
+	}
 
 	/**
 	 * Para o teste de BFS com grafo que possui ciclo o ocorre uma erro de sempre indicar nivel um para todos os vertices do grafo.
@@ -273,7 +285,6 @@ public class LibraryTests {
 	}
 	
 	/** Teste para representacao do tipo AL de um grafo com pesos
-
 	 * @throws Exception
 	 */
 	@Test
@@ -299,13 +310,11 @@ public class LibraryTests {
 		library = new BibliotecaController();
 		library.readGraph("normalGraph2.txt");
 		library.readWeightGraph("weightedGraph3.txt");
-		library.readWeightGraph("negativeCircleGraph.txt");
-		
+
 		assertEquals("2 3", library.shortestPath(2, 2, 3));
-		assertEquals("1 2 5", library.shortestPath(1, 1, 5));
+		assertEquals("1 2 3", library.shortestPath(1, 1, 3));
 		assertEquals("1 2 5 3 4", library.shortestPath(3, 1, 4));
 		
 	}
 	
-
 }
